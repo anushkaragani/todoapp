@@ -1,5 +1,5 @@
 import { createAction, props } from '@ngrx/store';
-import ToDo from './todo.model';
+import ToDo from '../model/todo.model';
 
 export const GetToDoAction = createAction('[ToDo] - Get ToDo');
 

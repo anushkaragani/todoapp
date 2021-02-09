@@ -1,7 +1,7 @@
 import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { Observable } from 'rxjs';
-import ToDo from './todo.model';
+import ToDo from '../model/todo.model';
 
 @Injectable({
   providedIn: 'root'

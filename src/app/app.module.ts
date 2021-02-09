@@ -7,8 +7,8 @@ import { StoreModule } from '@ngrx/store';
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 import { ToDoComponent } from './ToDo/Components/to-do.component';
-import { ToDoEffects } from './ToDo/todo.effects';
-import { ToDoReducer } from './ToDo/todo.reducer';
+import { ToDoEffects } from './store/todo.effects';
+import { ToDoReducer } from './store/todo.reducer';
 
 @NgModule({
   declarations: [AppComponent, ToDoComponent],

@@ -2,9 +2,9 @@ import { Component, OnInit } from '@angular/core';
 import { select, Store } from '@ngrx/store';
 import { Observable, Subscription } from 'rxjs';
 import { map } from 'rxjs/operators';
-import * as ToDoActions from '../todo.action';
-import ToDo from '../todo.model';
-import ToDoState from '../todo.state';
+import * as ToDoActions from '../../store/todo.action';
+import ToDo from '../../model/todo.model';
+import ToDoState from '../../store/todo.state';
 import { ToDoHttpService } from '../todo.httpservice';
 
 @Component({
@@ -18,7 +18,9 @@ export class ToDoComponent implements OnInit {
   ToDoSubscription: Subscription;
   ToDoList: ToDo[] = [];
   public admin: any = {};
-  Title: string = '';
+  title: string = '';
+  completed= false;
+  id: number;
   todoError: Error = null;
   public submitted = false;
   constructor(private store: Store<{ todos: ToDoState }>, public todoService: ToDoHttpService) {
@@ -54,11 +56,12 @@ export class ToDoComponent implements OnInit {
     else {
 
     }
-  }
-    // const todo: ToDo = { Id:this.id, Title: this.Title, Completed: this.completed };
+    // const todo: ToDo = { id:this.id, title: this.title, completed: this.completed };
     // this.store.dispatch(ToDoActions.BeginCreateToDoAction({ payload: todo }));
-    // this.Title = '';
+    // this.title = '';
     // this.completed = false;
+  }
+
 
 
   ngOnDestroy() {

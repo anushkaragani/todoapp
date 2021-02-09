@@ -4,8 +4,8 @@ import { Action } from '@ngrx/store';
 import { Observable, of } from 'rxjs';
 import { catchError, map, mergeMap } from 'rxjs/operators';
 import * as ToDoActions from './todo.action';
-import { ToDoHttpService } from './todo.httpservice';
-import ToDo from './todo.model';
+import { ToDoHttpService } from '../ToDo/todo.httpservice';
+import ToDo from '../model/todo.model';
 
 @Injectable()
 export class ToDoEffects {
