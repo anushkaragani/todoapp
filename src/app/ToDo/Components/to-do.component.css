@@ -1,0 +1,20 @@
+.row{
+  margin: 0;
+}
+table {
+  border: 1px solid black;
+  margin: 0 auto;
+}
+th, td{
+  border: 1px solid black;
+  padding: 5px 5px ;
+}
+.form-control-feed{
+  color: red;
+}
+button{
+  margin-top: 20px;
+}
+form{
+  align-items: center;
+}

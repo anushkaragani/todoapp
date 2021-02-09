@@ -5,6 +5,7 @@ import { map } from 'rxjs/operators';
 import * as ToDoActions from '../todo.action';
 import ToDo from '../todo.model';
 import ToDoState from '../todo.state';
+import { ToDoHttpService } from '../todo.httpservice';
 
 @Component({
   selector: 'app-to-do',
@@ -12,11 +13,20 @@ import ToDoState from '../todo.state';
   styleUrls: ['./to-do.component.css']
 })
 export class ToDoComponent implements OnInit {
-  constructor(private store: Store<{ todos: ToDoState }>) {
+
+  todo$: Observable<ToDoState>;
+  ToDoSubscription: Subscription;
+  ToDoList: ToDo[] = [];
+  public admin: any = {};
+  Title: string = '';
+  todoError: Error = null;
+  public submitted = false;
+  constructor(private store: Store<{ todos: ToDoState }>, public todoService: ToDoHttpService) {
     this.todo$ = store.pipe(select('todos'));
   }
 
   ngOnInit() {
+    this.admin.completed= false;
     this.ToDoSubscription = this.todo$
       .pipe(
         map(x => {
@@ -29,19 +39,27 @@ export class ToDoComponent implements OnInit {
     this.store.dispatch(ToDoActions.BeginGetToDoAction());
   }
 
-  todo$: Observable<ToDoState>;
-  ToDoSubscription: Subscription;
-  ToDoList: ToDo[] = [];
-  Title: string = '';
-  Id: number
 
-  todoError: Error = null;
 
-  createToDo() {
-    const todo: ToDo = { id:this.Id, name: this.Title };
-    this.store.dispatch(ToDoActions.BeginCreateToDoAction({ payload: todo }));
-    this.Title = '';
+  createToDo(form, admin) {
+    if(form.valid){
+    this.submitted = true;
+    this.todoService.createToDos("",form.value,"post").subscribe(value => {
+      console.log("POST METHOD", value);
+    }
+   )
+   alert("Task added");
+   location.reload();
+    }
+    else {
+
+    }
   }
+    // const todo: ToDo = { Id:this.id, Title: this.Title, Completed: this.completed };
+    // this.store.dispatch(ToDoActions.BeginCreateToDoAction({ payload: todo }));
+    // this.Title = '';
+    // this.completed = false;
+
 
   ngOnDestroy() {
     if (this.ToDoSubscription) {
